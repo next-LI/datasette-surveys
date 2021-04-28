@@ -1,0 +1,16 @@
+.*.sw[nop]
+.venv
+__pycache__/
+*.py[cod]
+*$py.class
+venv
+.eggs
+.pytest_cache
+*.egg-info
+build/
+dist/
+
+node_modules
+config-editor/build
+*.log
+datasette_surveys/static/lib/

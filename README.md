@@ -2,6 +2,9 @@
 
 Construct and gather responses to surveys all within Datasette!
 
+![Here's what the survey form builder looks like](https://github.com/next-LI/datasette-surveys/blob/main/screenshot.png)
+
+
 This plugin is based heavily on the officially amazing but unsupported [Alpaca form builder](http://www.alpacajs.org/demos/form-builder/form-builder.html).
 
 ## Installation

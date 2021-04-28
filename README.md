@@ -8,6 +8,10 @@ This plugin is based heavily on the officially amazing but unsupported [Alpaca f
 
     python setup.py install
 
+## Usage
+
+The plugin adds an interface at `/-/surveys` and a "Surveys" link in the menu.
+
 ## Configuration
 
 This plugin uses the permission plugin looking for responses to the following actions (they all start with `surveys-`):
@@ -18,15 +22,16 @@ This plugin uses the permission plugin looking for responses to the following ac
 - `surveys-delete`: allows actors to delete surveys. _resource_: id of the survey being deleted.
 - `surveys-view-form`: allows actors to view and respond to individual forms. _resource_: id of the survey.
 
-## Usage
-
-The plugin adds an interface at `/-/git-importer` for uploading a CSV file, setting meta configuration and pushing a commit to a specified repo.
-
 ## Development
 
-There's two parts to this plugin: a Preact app that builds the datasette template and the python backend code.
+The form builder borrows heavily from [Alpaca's form builder](http://www.alpacajs.org/demos/form-builder/form-builder.html) and the front end build also comes from the Alpaca repo.
 
-If you don't want to mess with the frontend UI, just install the plugin like described above. If you do
-want to edit the UI, the Preact app is in `config-ed`. To build the component and update the datasette template,
-run `npm run build`. This will run the entire JS build process and will update the template file and static
-assets. Re-installing the plugin will push the changes to datasette.
+To pull the dependencies for the plugin, use bower:
+
+    bower install
+
+And if you don't have bower, run this first: `npm install -g bower`
+
+The form builder is found in `datasette_surveys/static/form-builder.js`. It's a modified version of the Alpaca one.
+
+Running `python setup.py install` will reinstall the plugin.

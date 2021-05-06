@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block title %}Surveys{% endblock %}
+
+{% block content %}
+<h1>Surveys</h1>
+
+<p>
+  <a href="/-/surveys/new">Add new survey</a>
+</p>
+
+<p>
+  <ul>
+  {% for survey in surveys %}
+    <li><a href="/-/surveys/{{ survey.id}}">{{ survey.id }}</a></li>
+  {% endfor %}
+  </ul>
+</p>
+{% endblock %}

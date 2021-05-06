@@ -73,206 +73,216 @@ var setup = function()
     };
     */
 
-    var schema = {
-      "type": "object",
-      "required": false,
-      "properties": {
-        "new1619587185589": {
-          "readonly": false,
-          "required": true,
-          "type": "string",
-          "disallow": null,
-          "enum": null,
-          "properties": {}
-        },
-        "new1619587218757": {
-          "type": "string",
-          "required": false,
-          "properties": {}
-        },
-        "new1619587236430": {
-          "type": "number",
-          "required": false,
-          "properties": {}
-        },
-        "new1619587262240": {
-          "type": "boolean",
-          "required": false,
-          "properties": {}
-        },
-        "new1619587287562": {
-          "type": "string",
-          "required": false,
-          "pattern": {},
-          "properties": {}
-        },
-        "new1619587321596": {
-          "type": "array",
-          "required": false,
-          "properties": {}
-        }
-      }
-    };
-    var options = {
-      "focus": false,
-      "type": "object",
-      "helpers": [],
-      "helpersPosition": "below",
-      "validate": true,
-      "disabled": false,
-      "showMessages": true,
-      "collapsible": false,
-      "legendStyle": "button",
-      "fields": {
-        "new1619587185589": {
-          "type": "text",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "What's your name?",
-          "helpers": [],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "size": 40,
-          "typeahead": {},
-          "allowOptionalEmpty": "true",
-          "data": {},
-          "autocomplete": false,
-          "disallowEmptySpaces": false,
-          "disallowOnlyEmptySpaces": false,
-          "renderButtons": true,
-          "attributes": {},
-          "readonly": false,
-          "fields": {}
-        },
-        "new1619587218757": {
-          "type": "text",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "Would you like to take a survey?",
-          "helpers": [],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "size": 40,
-          "typeahead": {},
-          "allowOptionalEmpty": "true",
-          "data": {},
-          "autocomplete": false,
-          "disallowEmptySpaces": false,
-          "disallowOnlyEmptySpaces": false,
-          "renderButtons": true,
-          "attributes": {},
-          "fields": {}
-        },
-        "new1619587236430": {
-          "type": "number",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "On a scale from 1 to 10, how much?",
-          "helpers": [],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "size": 40,
-          "typeahead": {},
-          "allowOptionalEmpty": "true",
-          "data": {},
-          "autocomplete": false,
-          "disallowEmptySpaces": false,
-          "disallowOnlyEmptySpaces": false,
-          "numericEntry": false,
-          "renderButtons": true,
-          "attributes": {},
-          "fields": {}
-        },
-        "new1619587262240": {
-          "type": "checkbox",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "I'm pretty sure",
-          "helpers": [
-            "Yeah!"
-          ],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "removeDefaultNone": false,
-          "noneLabel": "None",
-          "hideNone": false,
-          "useDataSourceAsEnum": true,
-          "multiple": false,
-          "renderButtons": true,
-          "rightLabel": "",
-          "fields": {}
-        },
-        "new1619587287562": {
-          "type": "email",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "What's your email?",
-          "helpers": [],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "size": 40,
-          "typeahead": {},
-          "allowOptionalEmpty": "true",
-          "data": {},
-          "autocomplete": false,
-          "disallowEmptySpaces": false,
-          "disallowOnlyEmptySpaces": false,
-          "renderButtons": true,
-          "attributes": {},
-          "fields": {}
-        },
-        "new1619587321596": {
-          "type": "upload",
-          "validate": true,
-          "showMessages": true,
-          "disabled": false,
-          "hidden": false,
-          "label": "Related Uploads",
-          "helpers": [
-            "Feel free to upload any documents you think would be important to go with this response."
-          ],
-          "helpersPosition": "below",
-          "hideInitValidationError": false,
-          "optionLabels": [],
-          "maxNumberOfFiles": -1,
-          "maxFileSize": -1,
-          "multiple": true,
-          "directory": false,
-          "showUploadPreview": true,
-          "fields": {},
-          "renderButtons": false,
-          "buttons": [
-            {
-              "key": "delete",
-              "isDelete": true
-            }
-          ],
-          "showHeaders": true,
-          "upload": {
-            "maxNumberOfFiles": 9999
+    // TODO: read schema from #schema-data else use this
+    const csrftoken = document.querySelector("#csrftoken-data").innerHTML;
+    const rawSchema = document.querySelector("#schema-data").innerHTML;
+    const rawOptions= document.querySelector("#options-data").innerHTML;
+    try {
+      var schema = JSON.parse(rawSchema);
+      var options = JSON.parse(rawOptions);
+      var data = {};
+    } catch(e) {
+      var schema = {
+        "type": "object",
+        "required": false,
+        "properties": {
+          "new1619587185589": {
+            "readonly": false,
+            "required": true,
+            "type": "string",
+            "disallow": null,
+            "enum": null,
+            "properties": {}
           },
-          "fileTypes": null
+          "new1619587218757": {
+            "type": "string",
+            "required": false,
+            "properties": {}
+          },
+          "new1619587236430": {
+            "type": "number",
+            "required": false,
+            "properties": {}
+          },
+          "new1619587262240": {
+            "type": "boolean",
+            "required": false,
+            "properties": {}
+          },
+          "new1619587287562": {
+            "type": "string",
+            "required": false,
+            "pattern": {},
+            "properties": {}
+          },
+          "new1619587321596": {
+            "type": "array",
+            "required": false,
+            "properties": {}
+          }
         }
-      }
-    };
-    var data = {
-      "new1619587185589": "Brandon R",
-    };
+      };
+      var options = {
+        "focus": false,
+        "type": "object",
+        "helpers": [],
+        "helpersPosition": "below",
+        "validate": true,
+        "disabled": false,
+        "showMessages": true,
+        "collapsible": false,
+        "legendStyle": "button",
+        "fields": {
+          "new1619587185589": {
+            "type": "text",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "What's your name?",
+            "helpers": [],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "size": 40,
+            "typeahead": {},
+            "allowOptionalEmpty": "true",
+            "data": {},
+            "autocomplete": false,
+            "disallowEmptySpaces": false,
+            "disallowOnlyEmptySpaces": false,
+            "renderButtons": true,
+            "attributes": {},
+            "readonly": false,
+            "fields": {}
+          },
+          "new1619587218757": {
+            "type": "text",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "Would you like to take a survey?",
+            "helpers": [],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "size": 40,
+            "typeahead": {},
+            "allowOptionalEmpty": "true",
+            "data": {},
+            "autocomplete": false,
+            "disallowEmptySpaces": false,
+            "disallowOnlyEmptySpaces": false,
+            "renderButtons": true,
+            "attributes": {},
+            "fields": {}
+          },
+          "new1619587236430": {
+            "type": "number",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "On a scale from 1 to 10, how much?",
+            "helpers": [],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "size": 40,
+            "typeahead": {},
+            "allowOptionalEmpty": "true",
+            "data": {},
+            "autocomplete": false,
+            "disallowEmptySpaces": false,
+            "disallowOnlyEmptySpaces": false,
+            "numericEntry": false,
+            "renderButtons": true,
+            "attributes": {},
+            "fields": {}
+          },
+          "new1619587262240": {
+            "type": "checkbox",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "I'm pretty sure",
+            "helpers": [
+              "Yeah!"
+            ],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "removeDefaultNone": false,
+            "noneLabel": "None",
+            "hideNone": false,
+            "useDataSourceAsEnum": true,
+            "multiple": false,
+            "renderButtons": true,
+            "rightLabel": "",
+            "fields": {}
+          },
+          "new1619587287562": {
+            "type": "email",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "What's your email?",
+            "helpers": [],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "size": 40,
+            "typeahead": {},
+            "allowOptionalEmpty": "true",
+            "data": {},
+            "autocomplete": false,
+            "disallowEmptySpaces": false,
+            "disallowOnlyEmptySpaces": false,
+            "renderButtons": true,
+            "attributes": {},
+            "fields": {}
+          },
+          "new1619587321596": {
+            "type": "upload",
+            "validate": true,
+            "showMessages": true,
+            "disabled": false,
+            "hidden": false,
+            "label": "Related Uploads",
+            "helpers": [
+              "Feel free to upload any documents you think would be important to go with this response."
+            ],
+            "helpersPosition": "below",
+            "hideInitValidationError": false,
+            "optionLabels": [],
+            "maxNumberOfFiles": -1,
+            "maxFileSize": -1,
+            "multiple": true,
+            "directory": false,
+            "showUploadPreview": true,
+            "fields": {},
+            "renderButtons": false,
+            "buttons": [
+              {
+                "key": "delete",
+                "isDelete": true
+              }
+            ],
+            "showHeaders": true,
+            "upload": {
+              "maxNumberOfFiles": 9999
+            },
+            "fileTypes": null
+          }
+        }
+      };
+      var data = {
+        "new1619587185589": "Brandon R",
+      };
+    }
 
     var setupEditor = function(id, json)
     {
@@ -1299,6 +1309,32 @@ var setup = function()
 
         //alert("Your form was saved in HTML5 local storage");
     });
+
+
+    // NEW save button
+    $("#save-survey").off().click(function() {
+      var schemaString = JSON.stringify(schema);
+      var optionsString = JSON.stringify(options);
+      /* wipe out any remaining just in case */
+      $("#hidden-save-form").remove();
+      var hiddenForm = $('<form id="hidden-save-form" action="/-/surveys/new" method="POST" style="display:none;"></form>');
+      var hiddenInputSchema = $('<input type="hidden" name="schema" />');
+      window.hiddenInputSchema = hiddenInputSchema;
+      hiddenInputSchema.val(schemaString);
+      hiddenInputSchema.appendTo(hiddenForm);
+
+      var hiddenInputOptions = $('<input type="hidden" name="options" />');
+      hiddenInputOptions.val(optionsString);
+      hiddenInputOptions.appendTo(hiddenForm);
+
+      var hiddenInputCSRF = $('<input type="hidden" name="csrftoken" />');
+      hiddenInputCSRF.val(csrftoken);
+      hiddenInputCSRF.appendTo(hiddenForm);
+
+      hiddenForm.appendTo(document.body);
+      hiddenForm.submit();
+    });
+
 };
 
 $(document).ready(function() {

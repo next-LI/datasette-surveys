@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Alpaca Form Builder{% endblock %}
+{% block title %}Survey Form Builder{% endblock %}
 
 {% block extra_head %}
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -71,19 +71,6 @@
   <!-- jQuery UI for draggable support -->
   <script src="/-/static-plugins/datasette-surveys/lib/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
 
-  <!-- START - Google Analytics -->
-  <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-                  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-              m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-74723052-1', 'auto');
-      ga('send', 'pageview');
-
-  </script>
-
-  <!-- END - Google Analytics -->
   <link type="text/css" href="/-/static-plugins/datasette-surveys/form-builder.css" rel="stylesheet" />
   <script type="text/javascript" src="/-/static-plugins/datasette-surveys/form-builder.js"></script>
 {% endblock %}
@@ -211,5 +198,10 @@ Use the tool below to build a survey. Clicking the "Designer" tab will allow you
         </div>
     </div>
 
+    <button id="save-survey">Save Survey</button>
 </div>
+<input type="hidden" name="csrftoken" value="{{ csrftoken() }}">
+<script id="csrftoken-data" type="application/json">{{ csrftoken() }}</script>
+<script id="schema-data" type="application/json">{{ schema|safe }}</script>
+<script id="options-data" type="application/json">{{ options|safe }}</script>
 {%endblock %}

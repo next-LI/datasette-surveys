@@ -71,6 +71,9 @@
   <!-- jQuery UI for draggable support -->
   <script src="/-/static-plugins/datasette-surveys/lib/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
 
+  <!-- form builder -->
+  <script id="schema-data" type="application/json">{{ schema|safe }}</script>
+  <script id="options-data" type="application/json">{{ options|safe }}</script>
   <link type="text/css" href="/-/static-plugins/datasette-surveys/form-builder.css" rel="stylesheet" />
   <script type="text/javascript" src="/-/static-plugins/datasette-surveys/form-builder.js"></script>
 {% endblock %}
@@ -200,8 +203,9 @@ Use the tool below to build a survey. Clicking the "Designer" tab will allow you
 
     <button id="save-survey">Save Survey</button>
 </div>
-<input type="hidden" name="csrftoken" value="{{ csrftoken() }}">
-<script id="csrftoken-data" type="application/json">{{ csrftoken() }}</script>
-<script id="schema-data" type="application/json">{{ schema|safe }}</script>
-<script id="options-data" type="application/json">{{ options|safe }}</script>
+<form id="hidden-save-form" action="/-/surveys/{{id}}" method="POST" style="display:none;">
+  <input id="hidden-input-schema" type="hidden" name="schema" value="{{ schema|safe }}" />
+  <input id="hidden-input-options" type="hidden" name="options" value="{{ options|safe }}" />
+  <input type="hidden" name="csrftoken" value="{{ csrftoken() }}" />
+</form>
 {%endblock %}

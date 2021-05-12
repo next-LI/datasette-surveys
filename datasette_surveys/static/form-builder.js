@@ -74,7 +74,6 @@ var setup = function()
     */
 
     // TODO: read schema from #schema-data else use this
-    const csrftoken = document.querySelector("#csrftoken-data").innerHTML;
     const rawSchema = document.querySelector("#schema-data").innerHTML;
     const rawOptions= document.querySelector("#options-data").innerHTML;
     try {
@@ -1310,30 +1309,16 @@ var setup = function()
         //alert("Your form was saved in HTML5 local storage");
     });
 
-
     // NEW save button
     $("#save-survey").off().click(function() {
       var schemaString = JSON.stringify(schema);
+      $("#hidden-input-schema").val(schemaString);
+
       var optionsString = JSON.stringify(options);
-      /* wipe out any remaining just in case */
-      $("#hidden-save-form").remove();
-      var hiddenForm = $('<form id="hidden-save-form" action="/-/surveys/new" method="POST" style="display:none;"></form>');
-      var hiddenInputSchema = $('<input type="hidden" name="schema" />');
-      window.hiddenInputSchema = hiddenInputSchema;
-      hiddenInputSchema.val(schemaString);
-      hiddenInputSchema.appendTo(hiddenForm);
+      $("#hidden-input-options").val(optionsString);
 
-      var hiddenInputOptions = $('<input type="hidden" name="options" />');
-      hiddenInputOptions.val(optionsString);
-      hiddenInputOptions.appendTo(hiddenForm);
-
-      var hiddenInputCSRF = $('<input type="hidden" name="csrftoken" />');
-      hiddenInputCSRF.val(csrftoken);
-      hiddenInputCSRF.appendTo(hiddenForm);
-
-      hiddenForm.appendTo(document.body);
-      hiddenForm.submit();
-    });
+      $("#hidden-save-form").submit();
+     });
 
 };
 

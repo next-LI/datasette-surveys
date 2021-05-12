@@ -34,17 +34,16 @@ def register_routes():
     return [
         (r"^/-/surveys$", surveys_list),
         (r"^/-/surveys/new$", surveys_new),
-        # full CRUD for surveys (ADMIN ONLY)
-        (r"^/-/surveys/(?P<id>[0-9a-zA-Z\-]+)", surveys_update),
         # link to the specific survey for users to fill (GET & POST)
         (r"^/-/surveys/form/(?P<id>.*)", survey_form),
+        (r"^/-/surveys/(?P<id>[0-9a-zA-Z\-]+)", surveys_update),
     ]
 
 
 def perm_check_maker(datasette, request):
-    async def inner_perm_check(perm):
+    async def inner_perm_check(*args):
         if not await datasette.permission_allowed(
-            request.actor, perm, default=False
+            request.actor, *args, default=False
         ):
             raise Forbidden("Permission denied")
     return inner_perm_check
@@ -88,9 +87,12 @@ async def surveys_new(scope, receive, datasette, request):
 
     return Response.html(
         await datasette.render_template(
-            "form-builder.html", {}, request=request
+            "form-builder.html", {
+                "id": "new",
+            }, request=request
         )
     )
+
 
 async def surveys_update(scope, receive, datasette, request):
     perm_check = perm_check_maker(datasette, request)
@@ -182,25 +184,24 @@ async def surveys(scope, receive, datasette, request):
     )
 
 
-async def survey_edit(scope, receive, datasette, request):
-    return Response.html(
-        await datasette.render_template(
-            "surveys-.html", {
-                "surveys": []
-            }, request=request
-        )
-    )
-
-
 async def survey_form(scope, receive, datasette, request):
     survey_id = request.url_vars["id"]
+
     perm_check = perm_check_maker(datasette, request)
     await perm_check('surveys-view-form', survey_id)
+
+    db = get_db()
+    configs = db[TABLE_NAME]
+    cfg = configs.get(survey_id)
+    if not cfg:
+        raise NotFound(f"Form not found: {survey_id}")
+
     return Response.html(
         await datasette.render_template(
-            "surveys-form.html", {
-                "schema": {},
-                "survey_id": survey_id,
+            "form.html", {
+                "schema": cfg["schema"],
+                "options": cfg["options"],
+                "id": survey_id,
             }, request=request
         )
     )

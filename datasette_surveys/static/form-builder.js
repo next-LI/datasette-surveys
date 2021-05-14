@@ -113,11 +113,6 @@ var setup = function()
             "required": false,
             "pattern": {},
             "properties": {}
-          },
-          "new1619587321596": {
-            "type": "array",
-            "required": false,
-            "properties": {}
           }
         }
       };
@@ -244,6 +239,7 @@ var setup = function()
             "attributes": {},
             "fields": {}
           },
+          /*
           "new1619587321596": {
             "type": "upload",
             "validate": true,
@@ -276,6 +272,7 @@ var setup = function()
             },
             "fileTypes": null
           }
+          */
         }
       };
       var data = {

@@ -2,6 +2,13 @@
 
 {% block title %}Surveys{% endblock %}
 
+{% block nav %}
+<p class="crumbs">
+  <a href="{{ urls.instance() }}">home</a>
+</p>
+{{super()}}
+{% endblock %}
+
 {% block content %}
 <h1>Surveys</h1>
 

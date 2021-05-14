@@ -9,6 +9,7 @@ venv
 *.egg-info
 build/
 dist/
+*.db
 
 node_modules
 config-editor/build

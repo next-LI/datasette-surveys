@@ -1309,6 +1309,13 @@ var setup = function()
         //alert("Your form was saved in HTML5 local storage");
     });
 
+    function updateSurveyName() {
+      var survey_name = $("#survey-name").val();
+      if (survey_name) {
+        $("#hidden-survey-name").val(survey_name);
+      }
+    }
+
     // NEW save button
     $("#save-survey").off().click(function() {
       var schemaString = JSON.stringify(schema);
@@ -1317,9 +1324,13 @@ var setup = function()
       var optionsString = JSON.stringify(options);
       $("#hidden-input-options").val(optionsString);
 
+      updateSurveyName();
       $("#hidden-save-form").submit();
-     });
+    });
 
+    // Survey name updating
+    console.log("Survey name updating...");
+    $("input#survey-name").on('change input keyup', updateSurveyName);
 };
 
 $(document).ready(function() {

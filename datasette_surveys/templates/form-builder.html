@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Survey Form Builder{% endblock %}
+{% block title %}Survey Builder{% endblock %}
 
 {% block extra_head %}
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -76,6 +76,32 @@
   <script id="options-data" type="application/json">{{ options|safe }}</script>
   <link type="text/css" href="/-/static-plugins/datasette-surveys/form-builder.css" rel="stylesheet" />
   <script type="text/javascript" src="/-/static-plugins/datasette-surveys/form-builder.js"></script>
+
+  <style>
+    .survey-name-wrapper {
+      padding: 2em;
+    }
+    label[for='survey-name'] {
+      display: block;
+      box-sizing: border-box;
+      font-size: 1.6em;
+      padding: 0 1em;
+    }
+    input#survey-name {
+      display: block;
+      font-size: 1.6em;
+      width: 100%;
+      padding: 1em 2em;
+    }
+  </style>
+{% endblock %}
+
+{% block nav %}
+<p class="crumbs">
+  <a href="{{ urls.instance() }}">home</a> |
+  <a href="/-/surveys">surveys</a>
+</p>
+{{super()}}
 {% endblock %}
 
 {% block content %}
@@ -89,9 +115,20 @@ Use the tool below to build a survey. Clicking the "Designer" tab will allow you
 <p>
   <strong>Important:</strong> Try and finalize your survey fields before collecting responses. If you do need to make a significant change to a survey that already has existing responses, consider hiding, not removing old or unwanted survey fields.
 </p>
+
 <div data-spy="scroll" data-target=".demo-nav">
 
     <div class="container">
+        <div class="row">
+          <div class="col-md-12 survey-name-field">
+            <label for="survey-name">Survey Name</label>
+            <input type="text"
+                   id="survey-name"
+                   class="requied"
+                   value="{{ survey_name }}"
+                   placeholder="My survey" />
+          </div>
+        </div>
         <div class="row">
             <div class="col-md-12">
                 <div>
@@ -203,9 +240,11 @@ Use the tool below to build a survey. Clicking the "Designer" tab will allow you
 
     <button id="save-survey">Save Survey</button>
 </div>
+
 <form id="hidden-save-form" action="/-/surveys/{{id}}" method="POST" style="display:none;">
   <input id="hidden-input-schema" type="hidden" name="schema" value="{{ schema|safe }}" />
   <input id="hidden-input-options" type="hidden" name="options" value="{{ options|safe }}" />
+  <input id="hidden-survey-name" type="hidden" name="survey_name" value="{{ survey_name }}" /> <br/>
   <input type="hidden" name="csrftoken" value="{{ csrftoken() }}" />
 </form>
 {%endblock %}

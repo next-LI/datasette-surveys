@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 
-{% block title %}Survey Form Builder{% endblock %}
+{% block title %}{{survey_name}}{% endblock %}
 
 {% block extra_head %}
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -91,13 +91,14 @@
       "schema": JSON.parse($("#schema-data")[0].innerHTML),
       "options": options,
     });
+    $("<input type='hidden' value='{{csrftoken()}}' name='csrftoken' />").appendTo("form.alpaca-form");
   });
   </script>
 {% endblock %}
 
 {% block content %}
-<h1>Datasette Survey Builder</h1>
+<h1>{{ survey_name }}</h1>
 <p>
-  <form id="form" action="/-/surveys/form/{{id}}" method="post"></form>
+  <div id="form"></div>
 </p>
 {%endblock %}

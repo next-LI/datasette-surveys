@@ -200,9 +200,11 @@ async def survey_form(scope, receive, datasette, request):
         await perm_check('surveys-respond', survey_id)
 
         formdata = await request.post_vars()
+        if "csrftoken" in formdata:
+            del formdata["csrftoken"]
 
-        schema = json.loads(survey["schema"])
         survey_name = survey["survey_name"]
+        # schema = json.loads(survey["schema"])
         # TODO: FIX THIS! INSECURE
         # # this will explode if validation fails
         # validate(formdata, schema)
@@ -213,7 +215,7 @@ async def survey_form(scope, receive, datasette, request):
                     "title": urllib.parse.unquote(survey["survey_name"]),
                     "message": survey.get(
                         "submitted_message",
-                        "Your survey response has been collected!"
+                        "Your response has been collected!"
                     ),
                 }, request=request
             )

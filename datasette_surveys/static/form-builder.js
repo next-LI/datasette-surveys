@@ -1306,15 +1306,32 @@ var setup = function()
         //alert("Your form was saved in HTML5 local storage");
     });
 
+    function validateSurveyName() {
+      var nameEl = $("#survey-name");
+      if (nameEl.val()) {
+        nameEl.css("border", "unset");
+        return true;
+      }
+      nameEl.css("border", "1px solid red");
+      nameEl.focus();
+      return false;
+    }
+
+
     function updateSurveyName() {
       var survey_name = $("#survey-name").val();
       if (survey_name) {
         $("#hidden-survey-name").val(survey_name);
       }
+      validateSurveyName();
     }
 
     // NEW save button
     $("#save-survey").off().click(function() {
+      if (!validateSurveyName()) {
+        return;
+      }
+
       var schemaString = JSON.stringify(schema);
       $("#hidden-input-schema").val(schemaString);
 

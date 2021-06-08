@@ -19,7 +19,7 @@
 <p>
   <ul>
   {% for survey in surveys %}
-    <li><a href="/-/surveys/{{ survey.id}}">{{ survey.id }}</a> <a href="/-/surveys/form/{{ survey.id}}">(View form)</a></li>
+    <li><a href="/-/surveys/{{ survey.id}}">{{ survey.name }}</a> <a href="/-/surveys/form/{{ survey.id}}">(View form)</a></li>
   {% endfor %}
   </ul>
 </p>

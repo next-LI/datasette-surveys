@@ -49,6 +49,10 @@ def register_routes():
 
 def perm_check_maker(datasette, request):
     async def inner_perm_check(*args):
+        a_id = (request.actor or {}).get("id")
+        action = args[0]
+        if action.startswith("surveys-") and a_id == "root":
+            return True
         if not await datasette.permission_allowed(
             request.actor, *args, default=False
         ):
@@ -72,10 +76,11 @@ def get_db(datasette=None):
 def get_surveys():
     db = get_db()
     try:
-        return db[TABLE_NAME].rows
+        for survey in db[TABLE_NAME].rows:
+            survey["name"] = urllib.parse.unquote(survey["survey_name"])
+            yield survey
     except Exception as e:
         print(f"Exception while reading table {TABLE_NAME}: {e}")
-        return []
 
 
 async def surveys_new(scope, receive, datasette, request):

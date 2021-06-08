@@ -2,7 +2,7 @@ from setuptools import setup
 import glob
 import os
 
-VERSION = "1.1.1"
+VERSION = "1.1.2"
 
 
 def get_long_description():
@@ -34,7 +34,7 @@ setup(
     packages=["datasette_surveys"],
     entry_points={"datasette": ["surveys = datasette_surveys"]},
     install_requires=[
-        "datasette>=0.56",
+        # "datasette>=0.56",
         "asgi-csrf>=0.7",
         "starlette",
         "aiofiles",

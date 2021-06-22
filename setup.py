@@ -1,8 +1,7 @@
 from setuptools import setup
-import glob
 import os
 
-VERSION = "1.1.2"
+VERSION = "1.1.3"
 
 
 def get_long_description():
@@ -13,12 +12,20 @@ def get_long_description():
         return fp.read()
 
 
-def get_data_files():
-    data_files = []
-    directories = glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), "static/??"))
-    for directory in directories:
-        files = glob.glob(directory+'*')
-        data_files.append((directory, files))
+def get_data_files(rel_path):
+    data_files = [
+        "templates/*"
+    ]
+    if rel_path.endswith("/"):
+        rel_path = rel_path[:-1]
+    basedir = os.path.dirname(__file__)
+    static_dir = os.path.join(basedir, f"{rel_path}/static/")
+    for dir, subdirs, files in os.walk(static_dir):
+        for file in files:
+            filepath = os.path.join(dir, file).replace(
+                f"{rel_path}/", ""
+            )
+            data_files.append(filepath)
     return data_files
 
 
@@ -28,6 +35,7 @@ setup(
     long_description=get_long_description(),
     long_description_content_type="text/markdown",
     author="Brandon Roberts",
+    author_email="brandon@bxroberts.org",
     url="https://github.com/next-LI/datasette-surveys",
     license="Apache License, Version 2.0",
     version=VERSION,
@@ -45,10 +53,5 @@ setup(
     extras_require={
         "test": ["pytest", "pytest-asyncio", "asgiref", "httpx", "asgi-lifespan"]
     },
-    package_data={"datasette_surveys": [
-        "templates/*",
-        "static/*", "static/**/*", "static/**/**/*", "static/**/**/**/*",
-        # i love you, javascript <3
-        "static/**/**/**/**/*", "static/**/**/**/**/**/*",
-    ]},
+    package_data={"datasette_surveys": get_data_files("datasette_surveys")},
 )

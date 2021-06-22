@@ -6,7 +6,6 @@ import urllib
 from datasette import hookimpl
 from datasette.database import Database
 from datasette.utils.asgi import Response, NotFound, Forbidden
-from jsonschema import validate
 import sqlite_utils
 import uuid
 
@@ -209,10 +208,6 @@ async def survey_form(scope, receive, datasette, request):
             del formdata["csrftoken"]
 
         survey_name = survey["survey_name"]
-        # schema = json.loads(survey["schema"])
-        # TODO: FIX THIS! INSECURE
-        # # this will explode if validation fails
-        # validate(formdata, schema)
         db[survey_name].insert(formdata, alter=True)
         return Response.html(
             await datasette.render_template(

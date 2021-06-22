@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 
 
-VERSION = "1.1.5"
+VERSION = "1.1.6"
 
 
 def get_long_description():
@@ -53,5 +53,5 @@ setup(
     extras_require={
         "test": ["pytest", "pytest-asyncio", "asgiref", "httpx", "asgi-lifespan"]
     },
-    package_data={"datasette_surveys": get_data_files("datasette_surveys")},
+    include_package_data=True,
 )

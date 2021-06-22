@@ -1,0 +1,15 @@
+recursive-include datasette_surveys/ *
+include LICENSE
+include README.md
+include screenshot.png
+include setup.py
+exclude *.db
+exclude .*.sw[nop]
+exclude .venv
+exclude __pycache__/
+exclude *.py[cod]
+exclude *$py.class
+exclude venv
+exclude .eggs
+exclude .pytest_cache
+exclude node_modules

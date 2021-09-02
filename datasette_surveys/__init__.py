@@ -65,8 +65,8 @@ def perm_check_maker(datasette, request):
     return inner_perm_check
 
 
-def get_db(datasette=None):
-    database_path = os.path.join(DEFAULT_DBPATH, f"{DB_NAME}.db")
+def get_db(datasette):
+    database_path = get_db_path(datasette)
     # this will create the DB if not exists
     conn = sqlite3.connect(database_path)
     db = sqlite_utils.Database(conn)
@@ -78,8 +78,8 @@ def get_db(datasette=None):
     return db
 
 
-def get_surveys():
-    db = get_db()
+def get_surveys(datasette):
+    db = get_db(datasette)
     try:
         for survey in db[TABLE_NAME].rows:
             survey["name"] = urllib.parse.unquote(survey["survey_name"])
@@ -102,7 +102,7 @@ async def surveys_new(scope, receive, datasette, request):
         survey_name = urllib.parse.quote(formdata["survey_name"])
         # submitted_message = formdata.get("submitted_message")
         survey_id = str(uuid.uuid4())
-        db = get_db(datasette=datasette)
+        db = get_db(datasette)
 
         if survey_name in db.table_names():
             raise Exception(f"Survey name '{survey_name}' is already taken!")
@@ -133,7 +133,7 @@ async def surveys_update(scope, receive, datasette, request):
     survey_id = request.url_vars["id"]
     assert survey_id, "Survey ID missing"
 
-    db = get_db(datasette=datasette)
+    db = get_db(datasette)
     surveys_table = db[TABLE_NAME]
 
     if request.method == "DELETE":
@@ -188,7 +188,7 @@ async def surveys_list(scope, receive, datasette, request):
     return Response.html(
         await datasette.render_template(
             "surveys-list.html", {
-                "surveys": get_surveys()
+                "surveys": get_surveys(datasette)
             }, request=request
         )
     )
@@ -200,7 +200,7 @@ async def survey_form(scope, receive, datasette, request):
     perm_check = perm_check_maker(datasette, request)
     await perm_check('surveys-view', survey_id)
 
-    db = get_db(datasette=datasette)
+    db = get_db(datasette)
     surveys_table = db[TABLE_NAME]
     survey = surveys_table.get(survey_id)
     if not survey:

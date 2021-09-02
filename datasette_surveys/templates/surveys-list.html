@@ -13,13 +13,13 @@
 <h1>Surveys</h1>
 
 <p>
-  <a href="{{ base_url }}/-/surveys/new">Add new survey</a>
+  <a href="{{ base_url }}-/surveys/new">Add new survey</a>
 </p>
 
 <p>
   <ul>
   {% for survey in surveys %}
-    <li><a href="{{ base_url }}/-/surveys/{{ survey.id}}">{{ survey.name }}</a> <a href="{{ base_url }}/-/surveys/form/{{ survey.id}}">(View form)</a></li>
+    <li><a href="{{ base_url }}-/surveys/{{ survey.id}}">{{ survey.name }}</a> <a href="{{ base_url }}/-/surveys/form/{{ survey.id}}">(View form)</a></li>
   {% endfor %}
   </ul>
 </p>

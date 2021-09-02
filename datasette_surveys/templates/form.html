@@ -6,83 +6,81 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <script>window.DATASETTE_BASE_URL = "{{ base_url }}";</script>
-
   <!-- jQuery -->
-  <script type="text/javascript" src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/jquery/dist/jquery.min.js"></script>
+  <script type="text/javascript" src="{{ base_url }}-/static-plugins/datasette-surveys/lib/jquery/dist/jquery.min.js"></script>
 
   <!-- Bootstrap -->
-  <link href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
-  <link type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
-  <script type="text/javascript" src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/bootstrap/dist/js/bootstrap.js"></script>
+  <link href="{{ base_url }}-/static-plugins/datasette-surveys/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+  <link type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/bootstrap/dist/css/bootstrap-theme.css" rel="stylesheet" />
+  <script type="text/javascript" src="{{ base_url }}-/static-plugins/datasette-surveys/lib/bootstrap/dist/js/bootstrap.js"></script>
 
   <!-- Handlebars -->
-  <script type="text/javascript" src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/handlebars/handlebars.min.js"></script>
+  <script type="text/javascript" src="{{ base_url }}-/static-plugins/datasette-surveys/lib/handlebars/handlebars.min.js"></script>
 
   <!-- Alpaca -->
-  <link type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/alpaca/dist/alpaca/bootstrap/alpaca.css" rel="stylesheet" />
-  <script type="text/javascript" src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/alpaca/dist/alpaca/bootstrap/alpaca.js"></script>
+  <link type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/alpaca/dist/alpaca/bootstrap/alpaca.css" rel="stylesheet" />
+  <script type="text/javascript" src="{{ base_url }}-/static-plugins/datasette-surveys/lib/alpaca/dist/alpaca/bootstrap/alpaca.js"></script>
 
   <!-- Beautify (used by EditorField) -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify.js" type="text/javascript" charset="utf-8"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify-css.js" type="text/javascript" charset="utf-8"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify-html.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify-css.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/js-beautify/js/lib/beautify-html.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- typeahead.js -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/typeahead.js/dist/bloodhound.min.js" type="text/javascript"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/typeahead.js/dist/typeahead.bundle.min.js" type="text/javascript"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/typeahead.js/dist/bloodhound.min.js" type="text/javascript"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/typeahead.js/dist/typeahead.bundle.min.js" type="text/javascript"></script>
 
   <!-- datatables (for TableField) -->
-  <link type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet"/>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/datatables.net/js/jquery.dataTables.js" type="text/javascript"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/datatables.net-bs/js/dataTables.bootstrap.js" type="text/javascript"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/datatables.net-rowreorder/js/dataTables.rowReorder.js" type="text/javascript"></script>
+  <link type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/datatables.net-bs/css/dataTables.bootstrap.css" rel="stylesheet"/>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/datatables.net/js/jquery.dataTables.js" type="text/javascript"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/datatables.net-bs/js/dataTables.bootstrap.js" type="text/javascript"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/datatables.net-rowreorder/js/dataTables.rowReorder.js" type="text/javascript"></script>
 
   <!-- ckeditor (for the ckeditor field) -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/ckeditor/ckeditor.js" type="text/javascript"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/ckeditor/ckeditor.js" type="text/javascript"></script>
 
   <!-- fileupload control (for UploadField) -->
-  <link rel="stylesheet" type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/css/jquery.fileupload.css"/>
-  <link rel="stylesheet" type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/css/jquery.fileupload-ui.css"/>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
+  <link rel="stylesheet" type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/css/jquery.fileupload.css"/>
+  <link rel="stylesheet" type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/css/jquery.fileupload-ui.css"/>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/vendor/jquery.ui.widget.js"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.iframe-transport.js"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload.js"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload-process.js"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/blueimp-file-upload/js/jquery.fileupload-ui.js"></script>
 
   <!-- handsontable (for GridField) -->
-  <link rel="stylesheet" media="screen" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/handsontable/dist/jquery.handsontable.full.css"/>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/handsontable/dist/jquery.handsontable.full.js"></script>
+  <link rel="stylesheet" media="screen" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/handsontable/dist/jquery.handsontable.full.css"/>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/handsontable/dist/jquery.handsontable.full.js"></script>
 
   <!-- moment for date and datetime controls -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/moment/min/moment-with-locales.min.js"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/moment/min/moment-with-locales.min.js"></script>
   <!-- bootstrap datetimepicker for date and datetime controls -->
-  <link rel="stylesheet" media="screen" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"/>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+  <link rel="stylesheet" media="screen" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css"/>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
 
   <!-- bootstrap-multiselect for time field -->
-  <link rel="stylesheet" media="screen" href="{{ base_url }}/-/static-plugins/datasette-surveys/lib/bootstrap-multiselect/css/bootstrap-multiselect.css"/>
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
+  <link rel="stylesheet" media="screen" href="{{ base_url }}-/static-plugins/datasette-surveys/lib/bootstrap-multiselect/css/bootstrap-multiselect.css"/>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/bootstrap-multiselect/js/bootstrap-multiselect.js"></script>
 
   <!-- jQuery Price Format for currency field -->
-  <script type="text/javascript" src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/jquery-price-format2/jquery.price_format.min.js"></script>
+  <script type="text/javascript" src="{{ base_url }}-/static-plugins/datasette-surveys/lib/jquery-price-format2/jquery.price_format.min.js"></script>
 
   <!-- ACE editor -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/ace-builds/src-min-noconflict/ace.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- jQuery UI for draggable support -->
-  <script src="{{ base_url }}/-/static-plugins/datasette-surveys/lib/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+  <script src="{{ base_url }}-/static-plugins/datasette-surveys/lib/jquery-ui/jquery-ui.js" type="text/javascript" charset="utf-8"></script>
 
   <!-- form data & viewer -->
   <script id="schema-data" type="application/json">{{ schema|safe }}</script>
   <script id="options-data" type="application/json">{{ options|safe }}</script>
-  <link type="text/css" href="{{ base_url }}/-/static-plugins/datasette-surveys/form-builder.css" rel="stylesheet" />
+  <link type="text/css" href="{{ base_url }}-/static-plugins/datasette-surveys/form-builder.css" rel="stylesheet" />
   <script>
   $(document).ready(() => {
     var options = JSON.parse($("#options-data")[0].innerHTML);
     options.form = {
       "attributes":{
-        "action":"{{ base_url }}/-/surveys/form/{{id}}",
+        "action":"{{ base_url }}-/surveys/form/{{id}}",
         "method":"post"
       },
       "buttons":{

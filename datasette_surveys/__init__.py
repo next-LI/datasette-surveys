@@ -15,6 +15,12 @@ DEFAULT_DBPATH="."
 TABLE_NAME="surveys"
 
 
+def get_db_path(datasette):
+    config = datasette._metadata_local.get("datasette-surveys") or {}
+    default_db_path = config.get("db_dir", DEFAULT_DBPATH)
+    return os.path.join(default_db_path, f"{DB_NAME}.db")
+
+
 @hookimpl
 def menu_links(datasette, actor):
     async def inner():

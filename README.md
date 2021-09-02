@@ -25,6 +25,15 @@ This plugin uses the permission plugin looking for responses to the following ac
 - `surveys-delete`: allows actors to delete surveys. _resource_: id of the survey being deleted.
 - `surveys-view-form`: allows actors to view and respond to individual forms. _resource_: id of the survey.
 
+One configuration option is available, which controls which directory the surveys folder will be placed.
+
+    # in your metadata.yml...
+    plugins:
+      datasette-surveys:
+        db_dir: /path/to/data
+
+By default, the current working directory for the Datasette process will be used (assumed to be the same as the other DBs).
+
 ## Development
 
 The form builder borrows heavily from [Alpaca's form builder](http://www.alpacajs.org/demos/form-builder/form-builder.html) and the front end build also comes from the Alpaca repo.

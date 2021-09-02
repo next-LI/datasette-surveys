@@ -110,7 +110,7 @@ async def surveys_new(scope, receive, datasette, request):
             "options": options,
         }, pk="id", replace=True)
         return Response.redirect(
-            f"/-/surveys/{survey_id}"
+            datasette.urls.path(f"/-/surveys/{survey_id}")
         )
 
     return Response.html(
@@ -134,7 +134,7 @@ async def surveys_update(scope, receive, datasette, request):
         await perm_check('surveys-delete', survey_id)
         surveys_table.delete(survey_id)
         return Response.redirect(
-            f"/-/surveys"
+            datasette.urls.path(f"/-/surveys")
         )
 
     # SECURITY CHECK - everything from here out rides on this perm
@@ -158,7 +158,7 @@ async def surveys_update(scope, receive, datasette, request):
         # TODO: generate save message?
         # TODO: create empty form responses table
         return Response.redirect(
-            f"/-/surveys/{survey_id}"
+            datasette.urls.path(f"/-/surveys/{survey_id}")
         )
 
     # show editor

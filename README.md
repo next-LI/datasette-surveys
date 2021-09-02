@@ -15,7 +15,7 @@ This plugin is based heavily on the officially amazing but unsupported [Alpaca f
 
 The plugin adds an interface at `/-/surveys` and a "Surveys" link in the menu.
 
-## Configuration
+## Configuration & Permissions
 
 This plugin uses the permission plugin looking for responses to the following actions (they all start with `surveys-`):
 

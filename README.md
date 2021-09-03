@@ -47,3 +47,10 @@ And if you don't have bower, run this first: `npm install -g bower`
 The form builder is found in `datasette_surveys/static/form-builder.js`. It's a modified version of the Alpaca one.
 
 Running `python setup.py install` will reinstall the plugin.
+
+If you're in control of the pypi package, and you're ready to deploy a new version, you need to do the following:
+
+    python setup.py sdist
+    twine upload dist/*
+
+You can only upload a version once, so make sure there's no bugs. :P

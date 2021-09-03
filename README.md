@@ -9,7 +9,15 @@ This plugin is based heavily on the officially amazing but unsupported [Alpaca f
 
 ## Installation
 
+Using pypi:
+
+    pip install datasette-surveys
+
+Or locally:
+
     python setup.py install
+
+Note: You can't install this package via GitHub! You need to use one of the above methods.
 
 ## Usage
 
